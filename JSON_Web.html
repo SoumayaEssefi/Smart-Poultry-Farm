@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script> 
+</head>
+<body>
+    <div id="myData"></div>
+    <script>
+        fetch('http://192.168.43.127/temperature')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        function appendData(data) {
+            var mainContainer = document.getElementById("myData");
+            
+                var div = document.createElement("div");
+                div.innerHTML = 'Resultat : ' + data.type +' ' + data.value +' '+ data.unit;
+                mainContainer.appendChild(div);
+            
+        }
+        </script> 
+        <div id="myData2"></div>
+        <script>
+        fetch('http://192.168.43.127/humidity')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        function appendData(data) {
+            var mainContainer = document.getElementById("myData2");
+            
+                var div = document.createElement("div");
+                div.innerHTML = 'Resultat : ' + data.type +' ' + data.value +' '+ data.unit;
+                mainContainer.appendChild(div);
+            
+        }
+    </script>
+    
+</body>
+</html>
